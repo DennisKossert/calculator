@@ -14,3 +14,5 @@ function divide (a, b) {
     return a / b;
     //TODO: decimals
 }
+
+const operator = /[+\-*/]/
