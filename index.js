@@ -1,3 +1,9 @@
+let num1 = 0;
+let num2 = 0;
+let operator = "";
+
+//Calculations
+
 function add(a, b) {
     return a + b;
 }
@@ -32,3 +38,12 @@ function calculate (a, b, operator) {
     }
 }
 
+//Event handling
+
+const buttons = document.querySelector("button-container");
+
+buttons.addEventListener("click", (event) => {
+    if (event.target.nodeName === "BUTTON") {
+        //TODO
+    }
+});
