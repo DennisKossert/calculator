@@ -110,6 +110,11 @@ function handleOperator(newOperator) {
     if (newOperator == "C") {return resetAll()};
     if (newOperator == "=") {
         if (num1 && num2 && !(operator === null)) {
+            if ((num1 == 0 || num2 == 0) && operator == 3) {
+                resetAll();
+                screenText.textContent = "What do you think?";
+                return;
+            };
             solve();
             printToScreen(true);
         }
