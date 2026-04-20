@@ -8,3 +8,22 @@ body {
     color:white;
     font-family: "Silkscreen", "Roboto", sans-serif;
 }
+
+.calc-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.button-container {
+    display: flex;
+}
+
+.operator-container,
+.numpad {
+    display: flex;
+    flex-direction: column;
+}
+
+.numrow {
+    display: flex;
+}
