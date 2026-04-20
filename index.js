@@ -4,6 +4,8 @@ let operator = null;
 let firstNumber = true;
 let result = null;
 
+const MAX_LENGTH = 9;
+
 //Calculations
 
 function add() {
@@ -58,7 +60,7 @@ function setNumber(num) {
             if (num == ".") {num1 = "0."}
             else {num1 = num}
             result = null;
-        } else {
+        } else if (num1.length < MAX_LENGTH) {
             if (!(num == "." && num1.includes("."))) {
                 num1 += num; 
             }
@@ -70,7 +72,7 @@ function setNumber(num) {
         if (num2 === null) {
             if (num == ".") {num2 = "0.";}
             else {num2 = num}
-        } else {
+        } else if (num2.length < MAX_LENGTH) {
             if (!(num == "." && num2.includes("."))) {
                 num2 += num; 
             }
