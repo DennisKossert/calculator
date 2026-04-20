@@ -127,7 +127,7 @@ function handleOperator(newOperator) {
             if (num1 && num2 && !(operator === null)) {
                 if ((num1 == 0 || num2 == 0) && operator == 3) {
                     resetAll();
-                    screenText.textContent = "What do you think?";
+                    screenText.textContent = "R U SRS?";
                     return;
                 };
                 solve();
