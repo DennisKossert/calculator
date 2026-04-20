@@ -7,19 +7,19 @@ let result = null;
 //Calculations
 
 function add() {
-    return num1 + num2;
+    return Number(num1) + Number(num2);
 }
 
 function subtract() {
-    return num1 - num2;
+    return Number(num1) - Number(num2);
 }
 
 function multiply () {
-    return num1 * num2;
+    return Number(num1) * Number(num2);
 }
 
 function divide () {
-    return num1 / num2;
+    return Number(num1) / Number(num2);
     //TODO: decimals
 }
 
@@ -56,18 +56,18 @@ function setNumber(num) {
         //Replacing the starting 0 and disable working with previous result
         if (num1 === null) {
             result = null;
-            num1 = Number(num)
+            num1 = num
         } else {
-        num1 += Number(num); 
+        num1 += num; 
         }
 
     
     } else {
         //Replacing the starting 0
         if (num2 === null) {
-            num2 = Number(num)
+            num2 = num
         } else {
-        num2 += Number(num); 
+        num2 += num; 
         }
     }
     printToScreen(false);
