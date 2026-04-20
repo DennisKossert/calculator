@@ -1,0 +1,15 @@
+Enter button
+
+what is button?
+
+number -> (current state? -> NUM1/NEW, NUM2, NUM1/RESULT -> (condensed) only num1 or num2)
+           either state -> NUMx += NUMentered 
+                           && print num to screen
+
+
+
+operator -> which operator? : CLEAR -> reset all to null
+                            : = -> is num2 not null? -> num1+num2 = result -> print result -> reset num1,num2,result,operator,currentNum = 1
+
+                            : any other: is num2 not null? -> YES -> num1 (previousOperator) num2 = result -> reset num2 -> num1 = result, set operator, currentNum = 2 -> reset screen
+                                                              NO -> set operator -> currentnum = 2;

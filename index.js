@@ -1,49 +1,83 @@
 let num1 = 0;
 let num2 = 0;
 let operator = "";
+let firstNumber = true;
+let result = null;
 
 //Calculations
 
-function add(a, b) {
-    return a + b;
+function add() {
+    return num1 + num2;
 }
 
-function subtract(a, b) {
-    return a - b;
+function subtract() {
+    return num1 - num2;
 }
 
-function multiply (a, b) {
-    return a * b;
+function multiply () {
+    return num1 * num2;
 }
 
-function divide (a, b) {
-    return a / b;
+function divide () {
+    return num1 / num2;
     //TODO: decimals
 }
 
-function calculate (a, b, operator) {
+function operate () {
     switch (operator) {
-
         case "+" :
-            return add(a, b);
+            return add();
 
         case "-" :
-            return subtract(a, b);
+            return subtract();
 
         case "*" :
-            return multiply(a, b);
+            return multiply();
         
         case "/" :
-            return divide(a, b);
+            return divide();
     }
 }
 
+
+function setNumber(num) {
+    if (firstNumber) {
+        if (num1 == null) {
+            num1 = num
+        }
+        num1 += num;
+    } else {
+        num2 += num;
+    }
+    printToScreen();
+}
+
+function resetAll() {
+    num1 = null;
+    num2 = null;
+    operator = null;
+    firstNumber = true;
+}
+
+const screenText = document.querySelector(".screen-text");
+
+function printToScreen() {
+    if (firstNumber) {
+        screenText.textContent = num1;
+    } else {
+        screenText.textContent = num2;
+    }
+}
 //Event handling
 
-const buttons = document.querySelector("button-container");
+const buttons = document.querySelector(".button-container");
 
 buttons.addEventListener("click", (event) => {
     if (event.target.nodeName === "BUTTON") {
-        //TODO
+        if (event.target.classList.contains("operator")) {
+            handleOperator(event.target.textContent)
+        } else {
+            setNumber(event.target.textContent);
+        }
     }
 });
