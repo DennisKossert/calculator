@@ -1,5 +1,5 @@
-let num1 = 0;
-let num2 = 0;
+let num1 = null;
+let num2 = null;
 let operator = "";
 let firstNumber = true;
 let result = null;
@@ -42,14 +42,23 @@ function operate () {
 
 function setNumber(num) {
     if (firstNumber) {
+        //Replacing the starting 0
         if (num1 == null) {
             num1 = num
+        } else {
+        num1 += num; 
         }
-        num1 += num;
+
+    
     } else {
-        num2 += num;
+        //Replacing the starting 0
+        if (num2 == null) {
+            num2 = num
+        } else {
+        num2 += num; 
+        }
     }
-    printToScreen();
+    inputToScreen();
 }
 
 function resetAll() {
@@ -61,7 +70,7 @@ function resetAll() {
 
 const screenText = document.querySelector(".screen-text");
 
-function printToScreen() {
+function inputToScreen() {
     if (firstNumber) {
         screenText.textContent = num1;
     } else {
