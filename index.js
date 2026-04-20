@@ -68,7 +68,7 @@ function setNumber(num) {
     } else {
         //Replacing the starting 0
         if (num2 === null) {
-            if (num = ".") {num2 = "0.";}
+            if (num == ".") {num2 = "0.";}
             else {num2 = num}
         } else {
             if (!(num == "." && num2.includes("."))) {
