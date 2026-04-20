@@ -55,19 +55,25 @@ function setNumber(num) {
     if (firstNumber) {
         //Replacing the starting 0 and disable working with previous result
         if (num1 === null) {
+            if (num == ".") {num1 = "0."}
+            else {num1 = num}
             result = null;
-            num1 = num
         } else {
-        num1 += num; 
+            if (!(num == "." && num1.includes("."))) {
+                num1 += num; 
+            }
         }
 
     
     } else {
         //Replacing the starting 0
         if (num2 === null) {
-            num2 = num
+            if (num = ".") {num2 = "0.";}
+            else {num2 = num}
         } else {
-        num2 += num; 
+            if (!(num == "." && num2.includes("."))) {
+                num2 += num; 
+            }
         }
     }
     printToScreen(false);
