@@ -1,6 +1,6 @@
 let num1 = null;
 let num2 = null;
-let operator = "";
+let operator = null;
 let firstNumber = true;
 let result = null;
 
@@ -25,16 +25,16 @@ function divide () {
 
 function operate () {
     switch (operator) {
-        case "+" :
+        case 0 :
             return add();
 
-        case "-" :
+        case 1 :
             return subtract();
 
-        case "*" :
+        case 2 :
             return multiply();
         
-        case "/" :
+        case 3 :
             return divide();
     }
 }
@@ -49,45 +49,102 @@ function resetAll() {
     screenText.textContent = "0";
 }
 
-//Number Input
+//Number input
 
 function setNumber(num) {
     if (firstNumber) {
-        //Replacing the starting 0
-        if (num1 == null) {
-            num1 = num
+        //Replacing the starting 0 and disable working with previous result
+        if (num1 === null) {
+            result = null;
+            num1 = Number(num)
         } else {
-        num1 += num; 
+        num1 += Number(num); 
         }
 
     
     } else {
         //Replacing the starting 0
-        if (num2 == null) {
-            num2 = num
+        if (num2 === null) {
+            num2 = Number(num)
         } else {
-        num2 += num; 
+        num2 += Number(num); 
         }
     }
-    inputToScreen();
+    printToScreen(false);
 }
 
 const screenText = document.querySelector(".screen-text");
 
-function inputToScreen() {
-    if (firstNumber) {
-        screenText.textContent = num1;
+function printToScreen(finalResult) {
+    if (!finalResult) {      
+        if (firstNumber) {
+            screenText.textContent = num1;
+        } else {
+            screenText.textContent = num2;
+        }
     } else {
-        screenText.textContent = num2;
+        screenText.textContent = result;
     }
 }
 
 //Operator Handling
 
+function assignOperator(str) {
+    switch (str) {
+        case "+" :
+            return 0;
+        
+        case "-" :
+            return 1;
+
+        case "*" :
+            return 2;
+
+        case "/" :
+            return 3;
+    };
+};
+
+
 function handleOperator(newOperator) {
-    if (newOperator == "C") {resetAll()};
+    if (newOperator == "C") {return resetAll()};
+    if (newOperator == "=") {
+        if (num1 && num2 && !(operator === null)) {
+            solve();
+            printToScreen(true);
+        }
+        return;
+    }
+    //FOR ALL OPERATORS IN operate():
+
+    if (result) {
+        reuseResult();
+        operator = assignOperator(newOperator);
+    //Can we just calculate the current input and then work with the result?
+    } else if (num2) {
+        solve();
+        reuseResult();
+        operator = assignOperator(newOperator);
+
+    } else if (num1) {
+        operator = assignOperator(newOperator);
+        firstNumber = false;
+    } else {
+        return;
+    }
 }
 
+function reuseResult() {
+    num2 = null;
+    num1 = result;
+    result = null;
+    firstNumber = false;
+}
+
+function solve() {
+    result = operate();
+    printToScreen(true);
+}
 //Event handling
 
 const buttons = document.querySelector(".button-container");
