@@ -113,33 +113,48 @@ function assignOperator(str) {
 
 
 function handleOperator(newOperator) {
-    if (newOperator == "C") {return resetAll()};
-    if (newOperator == "=") {
-        if (num1 && num2 && !(operator === null)) {
-            if ((num1 == 0 || num2 == 0) && operator == 3) {
-                resetAll();
-                screenText.textContent = "What do you think?";
-                return;
-            };
-            solve();
-            printToScreen(true);
-        }
-        return;
-    }
-    //FOR ALL OPERATORS IN operate():
+    //Operators NOT listed in operate()
+    switch (newOperator) {
 
+        case "C": return resetAll();
+
+        case "CE":
+            firstNumber ? (num1 = null) : (num2 = null);
+            screenText.textContent = "0";
+            return;
+
+        case "=":
+            if (num1 && num2 && !(operator === null)) {
+                if ((num1 == 0 || num2 == 0) && operator == 3) {
+                    resetAll();
+                    screenText.textContent = "What do you think?";
+                    return;
+                };
+                solve();
+                printToScreen(true);
+            }
+            return;
+    }
+
+    //Operators listed in operate():
+
+    //Work with the current result
     if (result) {
         reuseResult();
         operator = assignOperator(newOperator);
+
     //Can we just calculate the current input and then work with the result?
     } else if (num2) {
         solve();
         reuseResult();
         operator = assignOperator(newOperator);
 
+    //The default case: Switching to Num2 after entering Num1
     } else if (num1) {
         operator = assignOperator(newOperator);
         firstNumber = false;
+
+    //Nothing applicable, e.g. pressing Operator twice
     } else {
         return;
     }
