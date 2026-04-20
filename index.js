@@ -39,6 +39,17 @@ function operate () {
     }
 }
 
+//
+
+function resetAll() {
+    num1 = null;
+    num2 = null;
+    operator = null;
+    firstNumber = true;
+    screenText.textContent = "0";
+}
+
+//Number Input
 
 function setNumber(num) {
     if (firstNumber) {
@@ -61,13 +72,6 @@ function setNumber(num) {
     inputToScreen();
 }
 
-function resetAll() {
-    num1 = null;
-    num2 = null;
-    operator = null;
-    firstNumber = true;
-}
-
 const screenText = document.querySelector(".screen-text");
 
 function inputToScreen() {
@@ -77,6 +81,13 @@ function inputToScreen() {
         screenText.textContent = num2;
     }
 }
+
+//Operator Handling
+
+function handleOperator(newOperator) {
+    if (newOperator == "C") {resetAll()};
+}
+
 //Event handling
 
 const buttons = document.querySelector(".button-container");
